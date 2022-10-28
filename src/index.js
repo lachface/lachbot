@@ -13,19 +13,20 @@ for (const folder of functionFolders) {
 }
 
 let activities = [`on ${client.guilds.cache.size} Servers`, "with the developers console." , "with some code.", "with JavaScript.", "with lachface"];
+console.log(`${client.guilds.cache.size}`)
 let activitynum = 0
 
 client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`)
+    console.log(`Logged in as ${client.user.tag}! on ${client.guilds.cache.size} servers`)
 
     setInterval(() => {
-        
+    
         client.user.setActivity({name: `${activities[activitynum]}`})
 
-        if(activitynum < activities.length) {
+        if(activitynum < 4) {
             activitynum++
         } else {
-            activitynum == 0
+            activitynum = 0
         }
 
     }, 5000);    

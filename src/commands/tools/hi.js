@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, GuildChannel, SlashCommandChannelOption } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     data : new SlashCommandBuilder().setName("hi").setDescription("lol")
