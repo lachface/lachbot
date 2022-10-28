@@ -7,8 +7,7 @@ module.exports = {
             fetchReply: true
         })
 
-        const newMessage = new EmbedBuilder()
-        .setTitle(`hi ${interaction.user}`);
+        const newMessage = `hi ${interaction.user}`;
         
         
 
