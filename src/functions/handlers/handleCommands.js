@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { REST } = require('@discordjs/rest');
-const { Routes } = require("discord-api-types/v9");
+const { Routes } = require("discord-api-types/v10");
 
 module.exports = (client) => {
     client.handleCommands = async() => {
@@ -12,16 +12,19 @@ module.exports = (client) => {
 
             var { commands, commandArray } = client;
             for (const file of commandFiles) {
-                const command = require(`../../commands/${folder}/${file}`);
-                commands.set(command.data.name, command);
-                commandArray.push(command.data.toJSON());
-                console.log(`Command: ${command.data.name} has been passed through the handler`);
+                try {
+                    const command = require(`../../commands/${folder}/${file}`);
+                    commands.set(command.data.name, command);
+                    commandArray.push(command.data.toJSON());
+                } catch(error) {
+                    console.error(error)
+                }
             }
         }
 
         const clientId = process.env.DISCORD_APPLICATION_ID;
         const guildId = process.env.DISCORD_GUILD_ID;
-        const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_BOT_TOKEN);
+        const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_BOT_TOKEN);
         try {
             console.log('Started refreshing application (/) commands.')
 

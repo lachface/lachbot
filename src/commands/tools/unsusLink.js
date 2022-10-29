@@ -9,7 +9,7 @@ module.exports = {
 
     embed = new EmbedBuilder()
     await interaction.editReply({
-      content: "http://tinyurl.com/fullyunsus"
+      content: "<https://www.youtube.com/watch?v=QB7ACr7pUuE>"
     });
   }
 };
