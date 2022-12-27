@@ -11,10 +11,11 @@ module.exports = {
     const Eastereggs = ["I like your feet"]
     const number = Math.floor(Math.random() * Greetings.length)
     const easteregg = Math.random()
+    let embed = new EmbedBuilder()
 
-    const newMessage = `${easteregg < 0.02 ? easteregg[Math.floor(Math.random() * Eastereggs.length)] : Greetings[number]} ${interaction.user}`;
+    embed.setDescription(`${easteregg < 0.02 ? easteregg[Math.floor(Math.random() * Eastereggs.length)] : Greetings[number]} ${interaction.user}`).setColor("DarkGold");
     await interaction.editReply({
-      content: newMessage
+      embeds: [embed]
     });
   }
 };

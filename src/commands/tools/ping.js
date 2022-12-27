@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, Embed } = require("discord.js");
 //const { execute } = require("../../events/client/ready");
 
 module.exports = {
@@ -6,10 +6,11 @@ module.exports = {
         const message = await interaction.deferReply({
             fetchReply: true
         });
+        let embed = new EmbedBuilder()
 
-        const newMessage = `API Latency: ${client.ws.ping}\nClient Ping: ${message.createdTimestamp - interaction.createdTimestamp}`
+        embed.setDescription(`API Latency: ${client.ws.ping}\nClient Ping: ${message.createdTimestamp - interaction.createdTimestamp}`)
         await interaction.editReply({
-            content: newMessage
+            embeds: [embed]
         });
     }
 };

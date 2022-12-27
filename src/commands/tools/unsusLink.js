@@ -9,7 +9,7 @@ module.exports = {
 
     embed = new EmbedBuilder()
     await interaction.editReply({
-      content: "<https://www.youtube.com/watch?v=QB7ACr7pUuE>"
+      embeds: [embed.setDescription("<https://www.youtube.com/watch?v=QB7ACr7pUuE>").setColor("DarkGold")]
     });
   }
 };

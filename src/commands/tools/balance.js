@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, Embed } = require("discord.js");
 const fs = require("fs")
 
 module.exports = {
@@ -11,18 +11,19 @@ module.exports = {
     const executor = interaction.user
     const userid = interaction.user.id
     const filePath = `./src/coins/${userid}.txt`
+    let embed = new EmbedBuilder()
     if(fs.existsSync(filePath)) {
         const coinbalance = fs.readFileSync(filePath, {encoding: 'utf8', flag: 'r'})
         
-        const newMessage = `${executor} has ${coinbalance} coins`;
+        embed.setDescription(`${executor} has ${coinbalance} coins`).setColor("DarkGold");
     await interaction.editReply({
-      content: newMessage
+      embeds: [embed]
     });
 
     } else {
-        const newMessage = `You haven't worked yet. Work by using the "/work" command`
+      embed.setDescription(`You haven't worked yet. Work by using the "/work" command`).setColor("DarkGold")
         await interaction.editReply({
-            content:newMessage
+            embeds: [embed]
         });
     }
   }

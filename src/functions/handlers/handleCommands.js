@@ -1,8 +1,26 @@
 const fs = require('fs');
+const Discord = require("discord.js")
+const { GatewayIntentBits : Intents, GuildVoiceStates  } = require("discord.js")
 const { REST } = require('@discordjs/rest');
 const { Routes } = require("discord-api-types/v10");
+const { Player } = require('discord-player');
 
 module.exports = (client) => {
+
+    const client1 = new Discord.Client({
+        intents:  [Intents.Guilds, Intents.GuildVoiceStates]
+    })
+
+    client.slashcommands = new Discord.Collection()
+    client.player = new Player(client1, {
+        ytdlOptions: {
+            autoSelfDeaf: true,
+            bufferingTimeout: 30000,
+            quality: "highestaudio",
+            highWaterMark:1 << 25
+        }
+    })
+
     client.handleCommands = async() => {
         const commandFolders = fs.readdirSync("./src/commands");
         for (const folder of commandFolders) {

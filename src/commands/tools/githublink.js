@@ -7,11 +7,12 @@ module.exports = {
       fetchReply: true
     })
 
+    let embed = new EmbedBuilder()
     const link = "https://github.com/lachface/lachbot"
 
-    const newMessage = `Link to my Code on Github: ${link}`;
+    embed.setDescription(`Link to my Github repository: ${link}`).setColor("DarkGold");
     await interaction.editReply({
-      content: newMessage
+      embeds: [embed]
     });
   }
 };

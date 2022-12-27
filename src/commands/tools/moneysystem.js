@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Client, GatewayIntentBits } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, Embed } = require("discord.js");
 const fs = require("fs");
 
 module.exports = {
@@ -7,6 +7,7 @@ module.exports = {
     const message1 = await interaction.deferReply({
       fetchReply: true
     })
+    let embed = new EmbedBuilder()
     if(!interaction.user.bot) {
     const userid = interaction.user.id
     const filePath = `./src/coins/${userid}.txt`
@@ -42,17 +43,17 @@ module.exports = {
       console.error(error)
     }
 
-    const newMessage = `${answers[randomans]}`;
+    embed.setDescription(`${answers[randomans]}`).setColor("DarkGold");
 
     await interaction.editReply({
-      content: newMessage
+      embeds: [embed]
     
     });
    } else {
-    const newMessage = `Bots can't execute commands. If this is an error try again later.`
+    embed.setDescription(`Bots can't execute commands. If this is an error try again later.`).setColor("DarkGold")
 
     await interaction.editReply({
-      content: newMessage
+      embeds: [embed]
     });   
    }
   }
