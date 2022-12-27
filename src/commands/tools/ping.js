@@ -8,7 +8,7 @@ module.exports = {
         });
         let embed = new EmbedBuilder()
 
-        embed.setDescription(`API Latency: ${client.ws.ping}\nClient Ping: ${message.createdTimestamp - interaction.createdTimestamp}`)
+        embed.setDescription(`API Latency: ${client.ws.ping}\nClient Ping: ${message.createdTimestamp - interaction.createdTimestamp}`).setColor("DarkGold")
         await interaction.editReply({
             embeds: [embed]
         });
